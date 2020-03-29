@@ -135,7 +135,7 @@ main .shorten form input {
   padding: 5px;
 }
 
-main .shorten form input[type="text"]:focus {
+main .shorten form input:focus {
   outline: none;
 }
 
@@ -206,6 +206,48 @@ main .shorten form input[type="submit"]:hover {
   width: 5px;
   height: 70px;
   background-color: #2acfcf;
+}
+
+.shortened-links {
+  padding: 1em;
+}
+
+.shortened-links div {
+  font-size: 15px;
+  padding: 0.5em 0.9em;
+  margin-bottom: 1em;
+  background-color: whitesmoke;
+  text-align: left;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border-radius: 10px;
+}
+
+.shortened-links div a {
+  text-decoration: none;
+  color: #2acfcf;
+  border-top: 1px solid #bfbfbf;
+  padding-top: 5px;
+}
+
+.shortened-links div button {
+  display: block;
+  width: 100%;
+  padding: 0.7em;
+  border-radius: 10px;
+  background-color: #2acfcf;
+  outline: none;
+  color: whitesmoke;
+  font-weight: 900;
 }
 
 .advanced-statistics {

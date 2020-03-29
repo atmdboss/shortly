@@ -149,7 +149,7 @@ main {
 				margin: 5px;
 				padding: 5px;
 			}
-			input[type="text"]:focus {
+			input:focus {
 				outline: none;
 			}
 			input[type="submit"] {
@@ -201,6 +201,40 @@ main {
 		width: 5px;
 		height: 70px;
 		background-color: getColor("primary", "cyan");
+	}
+}
+.shortened-links {
+	padding: 1em;
+
+	div {
+		font-size: 15px;
+		padding: 0.5em 0.9em;
+		margin-bottom: 1em;
+		background-color: whitesmoke;
+		text-align: left;
+		height: 150px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		border-radius: border("curve");
+
+		a {
+			text-decoration: none;
+			color: getColor("primary", "cyan");
+			border-top: 1px solid getColor("neutral", "gray");
+			padding-top: 5px;
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			padding: 0.7em;
+			border-radius: border("curve");
+			background-color: getColor("primary", "cyan");
+			outline: none;
+			color: whitesmoke;
+			font-weight: 900;
+		}
 	}
 }
 .advanced-statistics {
