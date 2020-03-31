@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:500,700&display=swap");
 $mobile: 375px;
 $tab: 768px;
+$tab-big: 1024px;
+$desktop: 1440px;
 $fonts: (
 	size-body: 18px,
 	size-small: 11px,
@@ -11,7 +13,8 @@ $fonts: (
 	$borders: (
 		"curve": 10px,
 		"pill": 35px,
-		"circle": 50%
+		"circle": 50%,
+		"curve-slight": 5px
 	);
 	@return map-get($map: $borders, $key: $type);
 }
@@ -43,8 +46,18 @@ $fonts: (
 	}
 	@return map-get($map: $category, $key: $name);
 }
-@mixin notMoblie {
+@mixin tabs {
 	@media (min-width: #{$tab}) {
+		@content;
+	}
+}
+@mixin tabs-big {
+	@media (min-width: #{$tab-big}) {
+		@content;
+	}
+}
+@mixin desktop {
+	@media (min-width: #{$desktop}) {
 		@content;
 	}
 }
@@ -68,6 +81,12 @@ body {
 	font-size: font(size-body);
 	width: 100vw;
 }
+nav {
+	@include tabs {
+		display: flex;
+	}
+}
+
 ul {
 	list-style-type: none;
 }
@@ -76,15 +95,49 @@ ul {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0.8em;
+
+	@include tabs {
+		margin-left: 2em;
+		#hamburger-menu {
+			display: none;
+		}
+	}
 }
 .nav-links {
 	height: 0px;
 	visibility: hidden;
 	transition: all 400ms linear;
 
+	@include tabs {
+		visibility: visible;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: inherit;
+		width: 100%;
+
+		ul {
+			display: flex;
+		}
+	}
+
 	a,
 	hr {
 		visibility: hidden;
+	}
+	a {
+		@include tabs {
+			visibility: visible;
+			color: getColor("primary", "dark-violet");
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+	}
+	a.get-started {
+		@include tabs {
+			color: whitesmoke;
+			margin-right: 2em;
+		}
 	}
 }
 .nav-links.show {
@@ -108,14 +161,43 @@ ul {
 }
 .introduction {
 	height: 120vh;
+	@include tabs {
+		position: relative;
+		height: 45vh;
+		margin-top: 3em;
+	}
+	@include desktop {
+		height: 80vh;
+	}
 	.image {
 		height: 48vh;
 		background: url("../images/illustration-working.svg") no-repeat 10px 10px;
 		background-size: 125%;
 		margin-bottom: 3em;
+
+		@include tabs {
+			position: absolute;
+			width: 50%;
+			right: 0;
+		}
+		@include desktop {
+			height: 70vh;
+		}
 	}
 	.more {
 		padding: 1em 2em;
+
+		@include tabs {
+			position: absolute;
+			width: 50%;
+			left: 0;
+			padding: 1em 3em;
+			height: 80%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
 
 		p {
 			margin: 1em 0;
@@ -127,38 +209,83 @@ main {
 
 	.shorten {
 		width: 80%;
-		height: 5.5em;
-		padding: 10px;
+		height: 8.8em;
+		padding: 0px 20px;
 		position: absolute;
-		top: -50px;
+		top: -80px;
 		left: 50%;
 		transform: translateX(-50%);
 		border-radius: border("curve");
 		background: getColor("primary", "dark-violet")
 			url("../images/bg-shorten-mobile.svg") no-repeat right top;
 
+		@include tabs {
+			top: -60px;
+			height: 6em;
+		}
+
 		form {
 			display: flex;
 			flex-direction: column;
-			justify-content: space-evenly;
+			justify-content: center;
 			align-items: center;
 			height: 100%;
+
+			div:first-of-type {
+				width: 100%;
+			}
+
+			@include tabs {
+				flex-direction: row;
+				align-items: flex-start;
+				margin-top: 1.4em;
+			}
+
+			#error-msg {
+				width: 100%;
+				height: 2em;
+				font-size: 0.6em;
+				text-align: left;
+				padding-left: 5px;
+				color: getColor("secondary", "red");
+			}
 			input {
 				width: 100%;
-				border-radius: border("curve");
-				margin: 5px;
-				padding: 5px;
+				border-radius: border("curve-slight");
+				padding: 15px;
+				font-family: "Poppins", sans-serif;
+
+				@include tabs-big {
+					font-size: font(size-body);
+				}
 			}
 			input:focus {
 				outline: none;
 			}
 			input[type="submit"] {
 				background-color: getColor("primary", "cyan");
+				border: none;
+				color: whitesmoke;
+				font-weight: 900;
+
+				@include tabs {
+					width: 30%;
+					margin-left: 1em;
+				}
 			}
 			input[type="submit"]:hover {
 				cursor: pointer;
 			}
 		}
+	}
+}
+form.error {
+	input[type="text"] {
+		border-color: getColor("secondary", "red");
+		color: getColor("secondary", "red");
+	}
+	.error-msg {
+		color: getColor("secondary", "red");
 	}
 }
 .content {
@@ -170,12 +297,28 @@ main {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
+		@include tabs-big {
+			flex-direction: row;
+			padding: 0 1em;
+
+			.capability.two {
+				margin-top: 4em;
+			}
+			.capability.three {
+				margin-top: 8em;
+			}
+		}
 	}
 	.capability {
 		background-color: whitesmoke;
 		border-radius: border("curve");
 		padding: 2em;
 		position: relative;
+
+		@include tabs-big {
+			width: 30%;
+		}
 
 		h3 {
 			margin-bottom: 1em;
@@ -201,10 +344,19 @@ main {
 		width: 5px;
 		height: 70px;
 		background-color: getColor("primary", "cyan");
+
+		@include tabs-big {
+			width: 60px;
+			height: 5px;
+		}
 	}
 }
 .shortened-links {
 	padding: 1em;
+
+	@include tabs-big {
+		font-size: font(size-body);
+	}
 
 	div {
 		font-size: 15px;
@@ -218,11 +370,28 @@ main {
 		justify-content: space-evenly;
 		border-radius: border("curve");
 
+		@include tabs {
+			flex-direction: row;
+			height: unset;
+
+			p,
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+
 		a {
 			text-decoration: none;
 			color: getColor("primary", "cyan");
 			border-top: 1px solid getColor("neutral", "gray");
 			padding-top: 5px;
+
+			@include tabs {
+				border-top: none;
+				margin-left: auto;
+			}
 		}
 
 		button {
@@ -234,11 +403,28 @@ main {
 			outline: none;
 			color: whitesmoke;
 			font-weight: 900;
+
+			@include tabs {
+				display: inline-block;
+				width: 15%;
+				margin-left: 1em;
+			}
+		}
+
+		button.copied {
+			background-color: getColor("neutral", "very-dark-blue");
 		}
 	}
 }
 .advanced-statistics {
 	margin-bottom: 2em;
+
+	@include tabs {
+		p {
+			width: 50%;
+			margin: 0 auto;
+		}
+	}
 }
 .cta {
 	color: whitesmoke;
@@ -263,6 +449,15 @@ footer {
 	background-color: getColor("neutral", "very-dark-violet");
 	color: whitesmoke;
 
+	@include tabs-big {
+		display: flex;
+		justify-content: space-evenly;
+
+		.brand-logo {
+			width: 20%;
+		}
+	}
+
 	div {
 		margin-top: 1em;
 		margin-bottom: 1em;
@@ -270,12 +465,19 @@ footer {
 		h4 {
 			margin-bottom: 1em;
 		}
+
+		@include tabs-big {
+			:not(.brand-logo) {
+				text-align: left;
+			}
+		}
 	}
 	a {
 		display: block;
 	}
 	a.social {
 		display: inline-block;
+		margin: 0 5px;
 	}
 }
 .attribution {

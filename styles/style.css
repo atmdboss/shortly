@@ -24,6 +24,14 @@ body {
   width: 100vw;
 }
 
+@media (min-width: 768px) {
+  nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 ul {
   list-style-type: none;
 }
@@ -41,6 +49,15 @@ ul {
   padding: 0.8em;
 }
 
+@media (min-width: 768px) {
+  .nav-images {
+    margin-left: 2em;
+  }
+  .nav-images #hamburger-menu {
+    display: none;
+  }
+}
+
 .nav-links {
   height: 0px;
   visibility: hidden;
@@ -48,9 +65,47 @@ ul {
   transition: all 400ms linear;
 }
 
+@media (min-width: 768px) {
+  .nav-links {
+    visibility: visible;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: inherit;
+    width: 100%;
+  }
+  .nav-links ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 .nav-links a,
 .nav-links hr {
   visibility: hidden;
+}
+
+@media (min-width: 768px) {
+  .nav-links a {
+    visibility: visible;
+    color: #3b3054;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-links a.get-started {
+    color: whitesmoke;
+    margin-right: 2em;
+  }
 }
 
 .nav-links.show {
@@ -79,6 +134,20 @@ ul {
   height: 120vh;
 }
 
+@media (min-width: 768px) {
+  .introduction {
+    position: relative;
+    height: 45vh;
+    margin-top: 3em;
+  }
+}
+
+@media (min-width: 1440px) {
+  .introduction {
+    height: 80vh;
+  }
+}
+
 .introduction .image {
   height: 48vh;
   background: url("../images/illustration-working.svg") no-repeat 10px 10px;
@@ -86,8 +155,45 @@ ul {
   margin-bottom: 3em;
 }
 
+@media (min-width: 768px) {
+  .introduction .image {
+    position: absolute;
+    width: 50%;
+    right: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .introduction .image {
+    height: 70vh;
+  }
+}
+
 .introduction .more {
   padding: 1em 2em;
+}
+
+@media (min-width: 768px) {
+  .introduction .more {
+    position: absolute;
+    width: 50%;
+    left: 0;
+    padding: 1em 3em;
+    height: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .introduction .more p {
@@ -100,15 +206,22 @@ main {
 
 main .shorten {
   width: 80%;
-  height: 5.5em;
-  padding: 10px;
+  height: 8.8em;
+  padding: 0px 20px;
   position: absolute;
-  top: -50px;
+  top: -80px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   border-radius: 10px;
   background: #3b3054 url("../images/bg-shorten-mobile.svg") no-repeat right top;
+}
+
+@media (min-width: 768px) {
+  main .shorten {
+    top: -60px;
+    height: 6em;
+  }
 }
 
 main .shorten form {
@@ -119,20 +232,52 @@ main .shorten form {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
 }
 
+main .shorten form div:first-of-type {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  main .shorten form {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-top: 1.4em;
+  }
+}
+
+main .shorten form #error-msg {
+  width: 100%;
+  height: 2em;
+  font-size: 0.6em;
+  text-align: left;
+  padding-left: 5px;
+  color: #f46262;
+}
+
 main .shorten form input {
   width: 100%;
-  border-radius: 10px;
-  margin: 5px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (min-width: 1024px) {
+  main .shorten form input {
+    font-size: 18px;
+  }
 }
 
 main .shorten form input:focus {
@@ -141,10 +286,29 @@ main .shorten form input:focus {
 
 main .shorten form input[type="submit"] {
   background-color: #2acfcf;
+  border: none;
+  color: whitesmoke;
+  font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  main .shorten form input[type="submit"] {
+    width: 30%;
+    margin-left: 1em;
+  }
 }
 
 main .shorten form input[type="submit"]:hover {
   cursor: pointer;
+}
+
+form.error input[type="text"] {
+  border-color: #f46262;
+  color: #f46262;
+}
+
+form.error .error-msg {
+  color: #f46262;
 }
 
 .content {
@@ -168,11 +332,33 @@ main .shorten form input[type="submit"]:hover {
           align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .content .capabilities {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    padding: 0 1em;
+  }
+  .content .capabilities .capability.two {
+    margin-top: 4em;
+  }
+  .content .capabilities .capability.three {
+    margin-top: 8em;
+  }
+}
+
 .content .capability {
   background-color: whitesmoke;
   border-radius: 10px;
   padding: 2em;
   position: relative;
+}
+
+@media (min-width: 1024px) {
+  .content .capability {
+    width: 30%;
+  }
 }
 
 .content .capability h3 {
@@ -208,8 +394,21 @@ main .shorten form input[type="submit"]:hover {
   background-color: #2acfcf;
 }
 
+@media (min-width: 1024px) {
+  .content .connect-line {
+    width: 60px;
+    height: 5px;
+  }
+}
+
 .shortened-links {
   padding: 1em;
+}
+
+@media (min-width: 1024px) {
+  .shortened-links {
+    font-size: 18px;
+  }
 }
 
 .shortened-links div {
@@ -232,11 +431,40 @@ main .shorten form input[type="submit"]:hover {
   border-radius: 10px;
 }
 
+@media (min-width: 768px) {
+  .shortened-links div {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    height: unset;
+  }
+  .shortened-links div p,
+  .shortened-links div a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 .shortened-links div a {
   text-decoration: none;
   color: #2acfcf;
   border-top: 1px solid #bfbfbf;
   padding-top: 5px;
+}
+
+@media (min-width: 768px) {
+  .shortened-links div a {
+    border-top: none;
+    margin-left: auto;
+  }
 }
 
 .shortened-links div button {
@@ -250,8 +478,27 @@ main .shorten form input[type="submit"]:hover {
   font-weight: 900;
 }
 
+@media (min-width: 768px) {
+  .shortened-links div button {
+    display: inline-block;
+    width: 15%;
+    margin-left: 1em;
+  }
+}
+
+.shortened-links div button.copied {
+  background-color: #35323e;
+}
+
 .advanced-statistics {
   margin-bottom: 2em;
+}
+
+@media (min-width: 768px) {
+  .advanced-statistics p {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 
 .cta {
@@ -288,6 +535,20 @@ footer {
   color: whitesmoke;
 }
 
+@media (min-width: 1024px) {
+  .find-out-more {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .find-out-more .brand-logo {
+    width: 20%;
+  }
+}
+
 .find-out-more div {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -297,12 +558,19 @@ footer {
   margin-bottom: 1em;
 }
 
+@media (min-width: 1024px) {
+  .find-out-more div :not(.brand-logo) {
+    text-align: left;
+  }
+}
+
 .find-out-more a {
   display: block;
 }
 
 .find-out-more a.social {
   display: inline-block;
+  margin: 0 5px;
 }
 
 .attribution {
